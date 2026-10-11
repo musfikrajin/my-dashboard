@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>আমার দিন</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{--bg:#EDF3F0;--card:#fff;--ink:#12302B;--mut:#5F7872;--line:#D6E3DE;--soft:#E3EFEA;--pine:#12423A;--jade:#1F8A70;--gold:#F2A93B;--rose:#D1495B;--r:18px}
+:root[data-th=dark]{--bg:#0B1816;--card:#12251F;--ink:#E3F0EB;--mut:#8DAAA2;--line:#22403A;--soft:#1A3430;--pine:#0A2B25}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:96px;line-height:1.45}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 0 10px}
+.top h1{font-size:22px;font-weight:700}.top small{color:var(--mut);display:block;font-size:13px}
+.ic{width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--line);font-size:18px}
+.hero{background:var(--pine);color:#EAF6F1;border-radius:26px;padding:18px;display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.ring{position:relative;width:132px;height:132px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .in{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring b{font-size:21px;font-variant-numeric:tabular-nums;letter-spacing:.5px}.ring span{font-size:11px;opacity:.75}
+.hero h2{font-size:26px;font-weight:700;line-height:1.1}.hero p{opacity:.8;font-size:14px;margin-top:4px}
+.pill{display:inline-block;margin-top:10px;background:rgba(255,255,255,.12);border-radius:99px;padding:4px 12px;font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.card h3{font-size:17px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.card h3 small{font-weight:400;color:var(--mut);font-size:13px}
+.times{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
+.times div{background:var(--soft);border-radius:12px;text-align:center;padding:7px 2px;font-size:12px;color:var(--mut)}
+.times b{display:block;color:var(--ink);font-size:13px}
+.times .nx{background:var(--gold);color:#3b2a00}.times .nx b{color:#3b2a00}
+.row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.chk{width:38px;height:38px;border-radius:12px;border:2px solid var(--line);font-size:18px;color:transparent;flex:none;transition:.15s}
+.chk.on{background:var(--jade);border-color:var(--jade);color:#fff}
+.row .nm{flex:1}.row .nm b{display:block;font-weight:600}.row .nm small{color:var(--mut);font-size:12px}
+.opt{display:flex;gap:6px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:4px 11px;font-size:12.5px;background:var(--soft);color:var(--mut)}
+.chip.on{background:var(--rose);border-color:var(--rose);color:#fff}
+.chip.pl{background:var(--pine);color:#fff;border-color:var(--pine)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tog{border:2px solid var(--line);border-radius:16px;padding:14px 10px;text-align:center;background:var(--card);transition:.15s}
+.tog .e{font-size:26px;display:block}.tog.on{background:var(--jade);border-color:var(--jade);color:#fff}
+.tog small{display:block;opacity:.8;font-size:12px}
+.m{margin:9px 0}.m div.l{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
+.bar{height:9px;background:var(--soft);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:var(--jade);transition:width .5s}
+.wk{display:flex;gap:6px;align-items:flex-end;height:90px;margin:12px 0 4px}
+.wk div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;color:var(--mut);gap:4px}
+.wk i{width:100%;background:var(--jade);border-radius:7px 7px 3px 3px;min-height:4px;transition:height .5s}
+.wk .td i{background:var(--gold)}
+input,select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 11px;font-size:15px}
+.add{display:flex;gap:8px;margin-bottom:12px}.add input{flex:1}
+.btn{background:var(--pine);color:#fff;border-radius:12px;padding:9px 16px;font-weight:600;white-space:nowrap}
+.btn.g{background:var(--jade)}.btn.o{background:var(--soft);color:var(--ink)}.btn.full{width:100%;margin-top:10px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.f2 label{font-size:12px;color:var(--mut);display:block;margin-bottom:2px}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.hd b{font-size:16px}
+.x{color:var(--mut);font-size:20px;padding:0 6px}
+.dots{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:10px 0}
+.dot{aspect-ratio:1;border-radius:50%;border:2px solid var(--line);font-weight:600;font-size:14px;background:var(--bg);transition:.15s}
+.dot.on{background:var(--jade);border-color:var(--jade);color:#fff;transform:scale(1.06)}
+.log{font-size:13px;color:var(--mut);border-top:1px dashed var(--line);padding:5px 0}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.seg button{padding:8px 2px;border-radius:12px;border:1px solid var(--line);font-size:13.5px;background:var(--soft)}
+.seg button.on{background:var(--pine);color:#fff;border-color:var(--pine)}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sum div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+.sum small{color:var(--mut);font-size:12px}.sum b{display:block;font-size:21px}
+.sum .dbt{background:var(--pine);color:#fff;grid-column:1/3}.sum .dbt small{color:#BFD9D1}
+.emp{text-align:center;color:var(--mut);padding:18px 8px;font-size:14px}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:9}
+nav div{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav button{padding:6px 0;font-size:11.5px;color:var(--mut);border-radius:12px}
+nav button span{display:block;font-size:21px}
+nav button.on{color:var(--jade);font-weight:700;background:var(--soft)}
+#toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:20;max-width:90%;text-align:center}
+#toast.s{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><h1 id="greet">আমার দিন</h1><small id="dt"></small></div><button class="ic" data-act="theme" aria-label="থিম বদলান">🌓</button></div>
+  <main id="app"></main>
+</div>
+<nav><div id="nav"></div></nav>
+<div id="toast" role="status"></div>
+
+<script>
+const URL_SHEET="https://script.google.com/macros/s/AKfycbwDvlYLR9EMXwy5PwAHnJGfngCDO4HakKAtTSDWVHIFB0v6d8eGKiah44hQxuS7AU8FTA/exec";
+const $=s=>document.querySelector(s);
+const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const kd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const TODAY=()=>kd(new Date());
+const ld=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}};
+let S=ld('dash',{days:{},projects:[],students:[],money:[]});
+const save=()=>{try{localStorage.setItem('dash',JSON.stringify(S))}catch(e){}};
+const day=(k=TODAY())=>S.days[k]||(S.days[k]={s:{},q:0,z:0,w:0,e:0});
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const PR=[['fajr','ফজর','Fajr'],['dhuhr','জোহর','Dhuhr'],['asr','আসর','Asr'],['maghrib','মাগরিব','Maghrib'],['isha','ইশা','Isha']];
+let tab='today';
+const TABS=[['today','🕌','আজ'],['research','🔬','রিসার্চ'],['tuition','📚','টিউশন'],['fit','🏃','ফিটনেস'],['money','💰','হিসাব']];
+
+/* ---------- toast & sync ---------- */
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('s');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('s'),2200)}
+async function sync(sheet,payload){
+  try{await fetch(URL_SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'saveData',sheetName:sheet,payload})});toast('Drive-এ পাঠানো হয়েছে ✓')}
+  catch(e){toast('পাঠানো যায়নি, ইন্টারনেট দেখুন')}
+}
+
+/* ---------- prayer times ---------- */
+let T=ld('pt',null);
+const FB={Fajr:'04:30',Dhuhr:'11:37',Asr:'15:00',Maghrib:'17:20',Isha:'18:35'};
+async function loadTimes(){
+  if(T&&T.d===TODAY()&&!T.fb)return;
+  try{
+    const r=await fetch('https://api.aladhan.com/v1/timingsByCity?city=Chittagong&country=Bangladesh&method=1');
+    const j=await r.json();const t={};PR.forEach(p=>t[p[2]]=j.data.timings[p[2]].slice(0,5));
+    T={d:TODAY(),t};localStorage.setItem('pt',JSON.stringify(T));
+  }catch(e){if(!T)T={d:TODAY(),t:FB,fb:1}}
+  if(tab==='today')render();
+}
+const times=()=>(T&&T.t)||FB;
+const at=(hm,off=0)=>{const d=new Date();d.setDate(d.getDate()+off);d.setHours(+hm.slice(0,2),+hm.slice(3,5),0,0);return d};
+const f12=hm=>{let h=+hm.slice(0,2),m=hm.slice(3,5);const s=h>=12?'PM':'AM';h=h%12||12;return bn(h)+':'+bn(m)+' '+s};
+function nextPrayer(){
+  const now=new Date(),tm=times();
+  for(let i=0;i<5;i++){const d=at(tm[PR[i][2]]);if(d>now){const prev=i?at(tm[PR[i-1][2]]):at(tm.Isha,-1);return{i,d,prev}}}
+  return{i:0,d:at(tm.Fajr,1),prev:at(tm.Isha)};
+}
+function tick(){
+  const c=$('#cd');if(!c)return;
+  const n=nextPrayer(),ms=n.d-new Date(),s=Math.max(0,Math.floor(ms/1000));
+  c.textContent=[Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(x=>bn(String(x).padStart(2,'0'))).join(':');
+  const fr=Math.min(1,Math.max(0,(new Date()-n.prev)/(n.d-n.prev)));
+  $('#arc').style.strokeDashoffset=(326.7*(1-fr)).toFixed(1);
+}
+setInterval(tick,1000);
+
+/* ---------- weekly stats ---------- */
+function week(){
+  const out=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const x=S.days[kd(d)]||{s:{},q:0,z:0};
+    const v=Object.values(x.s);out.push({d,done:v.filter(a=>a.on).length,ot:v.filter(a=>a.on&&!a.k).length,mq:v.filter(a=>a.on&&a.p==='Mosque').length,q:+x.q,z:+x.z,w:+x.w,e:+x.e})}
+  return out;
+}
+const pc=(a,b)=>b?Math.round(a/b*100):0;
+const sum=(w,k)=>w.reduce((a,x)=>a+x[k],0);
+
+/* ---------- views ---------- */
+const V={
+today(){
+  const D=day(),tm=times(),n=nextPrayer(),w=week();
+  const done=PR.filter(p=>(D.s[p[0]]||{}).on).length;
+  const hero=`<section class="hero"><div class="ring"><svg width="132" height="132" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="9"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="#F2A93B" stroke-width="9" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg><div class="in"><b id="cd">--:--:--</b><span>বাকি</span></div></div>
+  <div><p>পরবর্তী ওয়াক্ত</p><h2>${PR[n.i][1]}</h2><p>${f12(tm[PR[n.i][2]])}${T&&T.fb?' (আনুমানিক)':''}</p><span class="pill">আজ ${bn(done)}/৫ সালাত</span></div></section>`;
+  const chips=`<div class="times">${PR.map((p,i)=>`<div class="${i===n.i?'nx':''}">${p[1]}<b>${f12(tm[p[2]]).replace(/ (AM|PM)/,'')}</b></div>`).join('')}</div>`;
+  const rows=PR.map(p=>{const a=D.s[p[0]]||{};
+    return `<div class="row"><button class="chk ${a.on?'on':''}" data-act="salat" data-k="${p[0]}" aria-label="${p[1]}">✓</button><div class="nm"><b>${p[1]}</b><small>${f12(tm[p[2]])}</small></div>
+    ${a.on?`<div class="opt"><button class="chip pl" data-act="place" data-k="${p[0]}">${a.p==='Home'?'🏠 বাসা':'🕌 মসজিদ'}</button><button class="chip ${a.k?'on':''}" data-act="kaja" data-k="${p[0]}">কাজা</button></div>`:''}</div>`}).join('');
+  const bars=w.map((x,i)=>`<div class="${i===6?'td':''}"><i style="height:${x.done*20}%"></i>${x.d.toLocaleDateString('bn-BD',{weekday:'short'})}</div>`).join('');
+  const m=(l,v,c)=>`<div class="m"><div class="l"><span>${l}</span><b>${bn(v)}%</b></div><div class="bar"><i style="width:${v}%;${c?'background:'+c:''}"></i></div></div>`;
+  return hero+`<div class="card"><h3>সালাতের সময়সূচী <small>চট্টগ্রাম</small></h3>${chips}${rows}</div>
+  <div class="duo" style="margin-bottom:14px"><button class="tog ${D.q?'on':''}" data-act="flag" data-k="q"><span class="e">📖</span>কুরআন তেলাওয়াত<small>${D.q?'সম্পন্ন':'বাকি'}</small></button><button class="tog ${D.z?'on':''}" data-act="flag" data-k="z"><span class="e">📿</span>জিকির ও দোয়া<small>${D.z?'সম্পন্ন':'বাকি'}</small></button></div>
+  <div class="card"><h3>গত ৭ দিন <small>রিপোর্ট</small></h3><div class="wk">${bars}</div>
+  ${m('সালাত সম্পন্ন',pc(sum(w,'done'),35))}${m('যথাসময়ে (কাজা ছাড়া)',pc(sum(w,'ot'),35),'var(--gold)')}${m('মসজিদে আদায়',pc(sum(w,'mq'),Math.max(1,sum(w,'done'))),'#4C8BC4')}${m('কুরআন',pc(sum(w,'q'),7))}${m('জিকির',pc(sum(w,'z'),7),'#8E6BBF')}
+  <button class="btn full g" data-act="syncIbadah">আজকের ইবাদাত Drive-এ সেভ করুন</button></div>`;
+},
+research(){
+  const t=TODAY();
+  const cards=S.projects.map(p=>{const L=p.logs[t]||{},rec=Object.entries(p.logs).sort().reverse().slice(0,3);
+    return `<div class="card" data-id="${p.id}"><div class="hd"><b>${esc(p.name)}</b><button class="x" data-act="delProj" aria-label="মুছুন">×</button></div>
+    <div class="f2"><div><label>Start Time</label><input type="time" class="s" value="${L.s||''}"></div><div><label>Finish Time</label><input type="time" class="f" value="${L.f||''}"></div>
+    <div><label>Target</label><input type="text" class="g" placeholder="আজকের লক্ষ্য" value="${esc(L.g||'')}"></div><div><label>Update / Note</label><input type="text" class="n" placeholder="কী হলো" value="${esc(L.n||'')}"></div></div>
+    <div class="opt" style="margin-top:10px"><button class="chip" data-act="nowS">▶ এখন শুরু</button><button class="chip" data-act="nowF">■ এখন শেষ</button></div>
+    <button class="btn full" data-act="saveProj">আজকের রিপোর্ট সেভ করুন</button>
+    ${rec.map(([d,l])=>`<div class="log">${bn(d.slice(5))}: ${l.dur?esc(l.dur)+' · ':''}${esc(l.n||l.g||'—')}</div>`).join('')}</div>`}).join('');
+  return `<div class="card"><h3>নতুন রিসার্চ প্রজেক্ট</h3><div class="add" style="margin:0"><input id="np" placeholder="প্রজেক্টের নাম"><button class="btn" data-act="addProj">যোগ করুন</button></div></div>`+(cards||'<div class="emp">এখনো কোনো প্রজেক্ট নেই। উপরে নাম লিখে শুরু করুন।</div>');
+},
+tuition(){
+  const cards=S.students.map(s=>{const c=s.days.filter(Boolean).length;
+    return `<div class="card" data-id="${s.id}"><div class="hd"><b>${esc(s.name)}</b><span><span class="pill" style="margin:0;background:var(--soft)">${bn(c)}/১২</span><button class="x" data-act="delStu" aria-label="মুছুন">×</button></span></div>
+    <div class="bar"><i style="width:${c/12*100}%"></i></div>
+    <div class="dots">${s.days.map((d,i)=>`<button class="dot ${d?'on':''}" data-act="dayTog" data-i="${i}" title="${d||'Day '+(i+1)}">${bn(i+1)}</button>`).join('')}</div>
+    <div class="opt">${c===12?`<button class="btn g" data-act="pdf">📄 PDF ডাউনলোড</button><button class="btn o" data-act="cycle">নতুন ১২ দিন</button>`:`<small style="color:var(--mut)">দিন ${bn(c+1)} এর ঘরে ট্যাপ করে হাজিরা দিন</small>`}</div></div>`}).join('');
+  return `<div class="card"><h3>নতুন স্টুডেন্ট</h3><div class="add" style="margin:0"><input id="ns" placeholder="স্টুডেন্টের নাম"><button class="btn" data-act="addStu">যোগ করুন</button></div></div>`+(cards||'<div class="emp">স্টুডেন্ট যোগ করলে ১২ দিনের হাজিরা এখানে দেখা যাবে। ১২ দিন পূর্ণ হলে PDF নিজে থেকেই নামবে।</div>');
+},
+fit(){
+  const D=day(),w=week();
+  const st=k=>{let n=0;const d=new Date();if(!day(kd(d))[k])d.setDate(d.getDate()-1);while((S.days[kd(d)]||{})[k]){n++;d.setDate(d.getDate()-1)}return n};
+  const blk=(k,e,l)=>`<div class="card"><button class="tog ${D[k]?'on':''}" style="width:100%" data-act="flag" data-k="${k}"><span class="e">${e}</span>${l}<small>${D[k]?'আজ সম্পন্ন ✓':'ট্যাপ করে সম্পন্ন করুন'}</small></button>
+  <div class="hd" style="margin:12px 0 0"><span>🔥 টানা <b>${bn(st(k))}</b> দিন</span><span class="opt">${w.map(x=>`<i style="width:14px;height:14px;border-radius:50%;background:${x[k]?'var(--jade)':'var(--line)'}"></i>`).join('')}</span></div></div>`;
+  return blk('w','🚶','ওয়াকিং')+blk('e','🏋️','এক্সারসাইজ')+`<button class="btn full g" data-act="syncFit">ফিটনেস Drive-এ সেভ করুন</button>`;
+},
+money(){
+  const mo=TODAY().slice(0,7),M=S.money,tot=(t,f=()=>1)=>M.filter(x=>x.t===t&&f(x)).reduce((a,x)=>a+x.a,0);
+  const inM=x=>x.d.startsWith(mo),owe=tot('taken')-tot('paid');
+  const L={special:'বিশেষ খরচ',taken:'ধার নেওয়া',paid:'ধার পরিশোধ'};
+  const list=M.filter(inM).slice().reverse().map(x=>`<div class="row" data-id="${x.id}"><div class="nm"><b>${L[x.t]} · ৳${bn(x.a)}</b><small>${bn(x.d.slice(5))}${x.n?' · '+esc(x.n):''}</small></div><button class="x" data-act="delMoney" aria-label="মুছুন">×</button></div>`).join('');
+  return `<div class="sum"><div><small>এই মাসের বিশেষ খরচ</small><b>৳${bn(tot('special',inM))}</b></div><div><small>এই মাসে ধার নিয়েছি</small><b>৳${bn(tot('taken',inM))}</b></div><div class="dbt"><small>মোট পরিশোধ বাকি</small><b>৳${bn(owe)}</b></div></div>
+  <div class="card"><h3>নতুন হিসাব</h3><div class="seg" id="mt"><button class="on" data-act="mtype" data-t="special">বিশেষ খরচ</button><button data-act="mtype" data-t="taken">ধার নেওয়া</button><button data-act="mtype" data-t="paid">ধার পরিশোধ</button></div>
+  <div class="f2"><input id="ma" type="number" inputmode="decimal" placeholder="টাকা (৳)"><input id="mn" placeholder="নোট (ঐচ্ছিক)"></div><button class="btn full" data-act="addMoney">সেভ করুন</button></div>
+  <div class="card"><h3>এই মাসের তালিকা</h3>${list||'<div class="emp">এই মাসে এখনো কোনো হিসাব নেই।</div>'}</div>`;
+}};
+
+function render(){
+  $('#app').innerHTML=V[tab]();
+  $('#nav').innerHTML=TABS.map(t=>`<button class="${t[0]===tab?'on':''}" data-act="tab" data-t="${t[0]}"><span>${t[1]}</span>${t[2]}</button>`).join('');
+  tick();
+}
+
+/* ---------- PDF ---------- */
+function pdf(s){
+  const el=document.createElement('div');
+  el.style.cssText='position:absolute;left:-9999px;top:0;width:640px;padding:36px;font-family:"Hind Siliguri",sans-serif;color:#12302B;background:#fff';
+  el.innerHTML=`<div style="border-bottom:4px solid #1F8A70;padding-bottom:12px;margin-bottom:18px"><div style="font-size:13px;color:#5F7872">টিউশন হাজিরা রিপোর্ট</div><div style="font-size:30px;font-weight:700">${esc(s.name)}</div><div style="font-size:14px;margin-top:4px">মোট ১২ দিন সম্পন্ন · তৈরি: ${new Date().toLocaleDateString('bn-BD')}</div></div>
+  <table style="width:100%;border-collapse:collapse;font-size:15px"><tr style="background:#12423A;color:#fff"><th style="padding:8px;text-align:left">দিন</th><th style="padding:8px;text-align:left">তারিখ</th><th style="padding:8px">অবস্থা</th></tr>
+  ${s.days.map((d,i)=>`<tr style="background:${i%2?'#EDF3F0':'#fff'}"><td style="padding:8px">Day ${bn(i+1)}</td><td style="padding:8px">${d?new Date(d+'T00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'long',year:'numeric'}):'—'}</td><td style="padding:8px;text-align:center;color:#1F8A70;font-weight:700">${d?'উপস্থিত ✓':'—'}</td></tr>`).join('')}</table>`;
+  document.body.appendChild(el);
+  html2pdf().set({margin:8,filename:s.name+'_12_Days_Report.pdf',html2canvas:{scale:2},jsPDF:{format:'a4'}}).from(el).save().then(()=>el.remove()).catch(()=>{el.remove();toast('PDF তৈরি হয়নি, ইন্টারনেট দেখুন')});
+}
+
+/* ---------- actions ---------- */
+const card=b=>b.closest('[data-id]'),byId=(a,b)=>a.find(x=>x.id===card(b).dataset.id);
+const nowHM=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
+const A={
+tab:b=>{tab=b.dataset.t;render();scrollTo(0,0)},
+theme:()=>{const r=document.documentElement,d=r.dataset.th==='dark'?'light':'dark';r.dataset.th=d;localStorage.setItem('th',d)},
+salat:b=>{const D=day(),k=b.dataset.k,a=D.s[k]||(D.s[k]={on:0,p:'Mosque',k:0});a.on=a.on?0:1;save();render()},
+place:b=>{const a=day().s[b.dataset.k];a.p=a.p==='Home'?'Mosque':'Home';save();render()},
+kaja:b=>{const a=day().s[b.dataset.k];a.k=a.k?0:1;save();render()},
+flag:b=>{const D=day();D[b.dataset.k]=D[b.dataset.k]?0:1;save();render()},
+syncIbadah:()=>{const D=day(),o={Date:new Date().toLocaleDateString()};
+  PR.forEach(p=>{const a=D.s[p[0]]||{};o[p[2]]=a.on?a.p:'No';o[p[2]+'_Kaja']=!!a.k});o.Quran=!!D.q;o.Zikr=!!D.z;sync('Salat_and_Quran',o)},
+syncFit:()=>{const D=day();sync('Fitness_Log',{Date:new Date().toLocaleDateString(),Walking:!!D.w,Exercise:!!D.e})},
+addProj:()=>{const v=$('#np').value.trim();if(!v)return toast('প্রজেক্টের নাম লিখুন');S.projects.push({id:uid(),name:v,logs:{}});save();render()},
+delProj:b=>{if(confirm('প্রজেক্ট মুছবেন?')){S.projects=S.projects.filter(x=>x.id!==card(b).dataset.id);save();render()}},
+nowS:b=>{card(b).querySelector('.s').value=nowHM()},
+nowF:b=>{card(b).querySelector('.f').value=nowHM()},
+saveProj:b=>{const c=card(b),p=byId(S.projects,b),g=q=>c.querySelector(q).value;
+  const s=g('.s'),f=g('.f');let dur='';
+  if(s&&f){let m=(+f.slice(0,2)*60+ +f.slice(3))-(+s.slice(0,2)*60+ +s.slice(3));if(m<0)m+=1440;dur=bn(Math.floor(m/60))+' ঘ '+bn(m%60)+' মি'}
+  p.logs[TODAY()]={s,f,g:g('.g'),n:g('.n'),dur};save();render();
+  sync('Research_Work',{Date:new Date().toLocaleDateString(),Project:p.name,StartTime:s,Target:g('.g'),FinishTime:f,Update:g('.n')})},
+addStu:()=>{const v=$('#ns').value.trim();if(!v)return toast('স্টুডেন্টের নাম লিখুন');S.students.push({id:uid(),name:v,days:Array(12).fill(null)});save();render()},
+delStu:b=>{if(confirm('স্টুডেন্ট মুছবেন?')){S.students=S.students.filter(x=>x.id!==card(b).dataset.id);save();render()}},
+dayTog:b=>{const s=byId(S.students,b),i=+b.dataset.i;s.days[i]=s.days[i]?null:TODAY();save();render();
+  if(s.days[i]){sync('Tuition_Log',{Student:s.name,Day:i+1,Date:new Date().toLocaleDateString()});
+    if(s.days.every(Boolean)){toast(s.name+'-এর ১২ দিন পূর্ণ! PDF নামছে…');pdf(s)}}},
+pdf:b=>pdf(byId(S.students,b)),
+cycle:b=>{byId(S.students,b).days=Array(12).fill(null);save();render()},
+mtype:b=>{document.querySelectorAll('#mt button').forEach(x=>x.classList.toggle('on',x===b))},
+addMoney:()=>{const a=parseFloat($('#ma').value);if(!(a>0))return toast('সঠিক টাকার পরিমাণ লিখুন');
+  const t=document.querySelector('#mt .on').dataset.t,n=$('#mn').value.trim();
+  S.money.push({id:uid(),d:TODAY(),t,a,n});save();render();
+  sync('Expenses_Log',{Date:new Date().toLocaleDateString(),SpecialExpense:t==='special'?a:'',DebtTaken:t==='taken'?a:'',DebtPaid:t==='paid'?a:''})},
+delMoney:b=>{S.money=S.money.filter(x=>x.id!==card(b).dataset.id);save();render()}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&A[b.dataset.act])A[b.dataset.act](b)});
+
+/* ---------- init ---------- */
+document.documentElement.dataset.th=localStorage.getItem('th')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+const h=new Date().getHours();
+$('#greet').textContent=h<5?'শুভ রাত্রি':h<12?'শুভ সকাল':h<16?'শুভ দুপুর':h<19?'শুভ বিকেল':'শুভ সন্ধ্যা';
+$('#dt').textContent=new Date().toLocaleDateString('bn-BD',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+render();loadTimes();
+</script>
+</body>
+</html>
